@@ -10,19 +10,18 @@ import com.example.myapplication.data.WeatherHttpClient;
 import com.example.myapplication.openWeather_model.OpenWeatherMap;
 
 public class OpenWeatherController {
+    private final String API_KEY = "ee6892eaa4ce0be1a8eac7817898d322";
 
-    OpenWeatherMap weatherMap = new OpenWeatherMap();
-    TextView result;
-
-
+    private OpenWeatherMap weatherMap;
+    private TextView result;
+    private double lat = 41.090923;
+    private double lon = 23.54132;
+    
     public OpenWeatherController(Activity activity){
-       renderWeatherData("athens");
+        weatherMap = new OpenWeatherMap();
+        String url = "http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&APPID="+API_KEY+"&units=metric";
+        new WeatherTask().execute(url);
         result = activity.findViewById(R.id.Result);
-    }
-
-    public void renderWeatherData(String city){
-        WeatherTask weatherTask = new WeatherTask();
-        weatherTask.execute(new String[]{city}+"&units=metric");
     }
 
 
@@ -30,16 +29,16 @@ public class OpenWeatherController {
         @Override
         protected OpenWeatherMap doInBackground(String... strings) {
             String data = ((new WeatherHttpClient()).getWeatherData(strings[0]));
-            weatherMap= JSONWeatherParser.getWeather(data);
-            Log.v("Data:", weatherMap.wind.getDeg());
-            Log.v("Data:", weatherMap.wind.getSpeed());
+            weatherMap = JSONWeatherParser.getWeather(data);
+//            Log.v("Data:", weatherMap.wind.getDeg());
+//            Log.v("Data:", weatherMap.wind.getSpeed());
             return weatherMap;
         }
 
         @Override
         protected void onPostExecute(OpenWeatherMap weather) {
             super.onPostExecute(weather);
-            result.setText(weatherMap.wind.getDeg()+" "+weatherMap.coord.getLat()+ " "+weatherMap.main.getTemp()+" "+weatherMap.sys.getCountry());
+            result.setText("Temp: "+weatherMap.main.getTemp()+"\n   "+weatherMap.simple.getCityName()+" "+weatherMap.sys.getCountry());
         }
 
     }

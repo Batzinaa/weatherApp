@@ -1,16 +1,7 @@
 package com.example.myapplication.data;
 
 
-import android.app.Activity;
-import android.content.Context;
-
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.myapplication.MainActivity;
 import com.example.myapplication.Util.Utils;
 
 import java.io.BufferedReader;

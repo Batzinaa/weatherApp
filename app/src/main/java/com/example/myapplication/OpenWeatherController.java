@@ -14,8 +14,9 @@ public class OpenWeatherController {
     OpenWeatherMap weatherMap = new OpenWeatherMap();
     TextView result;
 
+
     public OpenWeatherController(Activity activity){
-       renderWeatherData("serres");
+       renderWeatherData("athens");
         result = activity.findViewById(R.id.Result);
     }
 
@@ -26,9 +27,6 @@ public class OpenWeatherController {
 
 
     private class WeatherTask extends AsyncTask<String,Void, OpenWeatherMap> {
-
-
-
         @Override
         protected OpenWeatherMap doInBackground(String... strings) {
             String data = ((new WeatherHttpClient()).getWeatherData(strings[0]));

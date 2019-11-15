@@ -19,15 +19,18 @@ public class JSONWeatherParser {
 
             Location location = new Location();
 
-            JSONObject locationObj = Utils.getObject("location",jsonObject);
+            JSONObject locationObj = Utils.getObject("coord",jsonObject);
             location.setLat(Utils.getFloat("lat",locationObj));
             location.setLon(Utils.getFloat("lon",locationObj));
-            location.setCountry(Utils.getString("country",locationObj));
+            location.setName(Utils.getString("name",jsonObject));
 
             weather.location = location;
+
+            return weather;
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

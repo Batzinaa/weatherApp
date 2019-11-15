@@ -13,11 +13,11 @@ import java.net.URL;
 public class WeatherHttpClient {
 
     public String getWeatherData(String location){
-        HttpURLConnection connection = null;
-        InputStream inputStream = null;
+        HttpURLConnection connection ;
+        InputStream inputStream ;
 
         try {
-            connection = (HttpURLConnection)(new URL(Utils.BASE_URL + location)).openConnection();
+            connection = (HttpURLConnection)(new URL(Utils.BASE_URL /*+ location*/)).openConnection();
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
             connection.setDoInput(true);
@@ -27,7 +27,7 @@ public class WeatherHttpClient {
             StringBuffer stringBuffer = new StringBuffer();
             inputStream = connection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line = null;
+            String line ;
             while ((line = bufferedReader.readLine()) != null){
                 stringBuffer.append(line +"\r\n");
             }

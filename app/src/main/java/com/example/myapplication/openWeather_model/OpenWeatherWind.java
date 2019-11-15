@@ -1,12 +1,10 @@
 package com.example.myapplication.openWeather_model;
 
-import java.io.Serializable;
 
 public class OpenWeatherWind {
 
     private String speed;
     private String deg;
-
 
     public String getSpeed() {
         return speed;

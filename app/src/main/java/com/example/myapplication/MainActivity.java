@@ -12,12 +12,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView pressure;
     private TextView wind;
 
+    private OpenWeatherController openWeatherController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        OpenWeatherController myController = new OpenWeatherController(this);
+        openWeatherController = new OpenWeatherController(this);
     }
 
 }

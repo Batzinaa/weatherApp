@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class JSONWeatherParser {
 
 
-    public static OpenWeatherMap getWeather(String data) {
+    public static OpenWeatherMap getOpenWeatherData(String data) {
 
         OpenWeatherMap myOpenWeatherMap = new OpenWeatherMap();
         try {
@@ -25,7 +25,7 @@ public class JSONWeatherParser {
             JSONObject windObject =   jsonObject.getJSONObject("wind");
             String deg = windObject.getString("deg");
             String speed = windObject.getString("speed");
-            //set data on openWeatherWind class
+            //set data on OpenWeatherWind class
             OpenWeatherWind weatherWind = new OpenWeatherWind();
             weatherWind.setDeg(deg);
             weatherWind.setSpeed(speed);
@@ -34,7 +34,7 @@ public class JSONWeatherParser {
             JSONObject coordObject = jsonObject.getJSONObject("coord");
             String latitude = coordObject.getString("lat");
             String longitude = coordObject.getString("lon");
-            //set data on openWeatherCoord class
+            //set data on OpenWeatherCoord class
             OpenWeatherCoord weatherCoord = new OpenWeatherCoord();
             weatherCoord.setLat(latitude);
             weatherCoord.setLon(longitude);
@@ -45,7 +45,7 @@ public class JSONWeatherParser {
             String main = weatherObject.getString("main");
             String description = weatherObject.getString("description");
             String icon = weatherObject.getString("icon");
-            //set data on openWeatherWeather class
+            //set data on OpenWeatherWeather class
             OpenWeatherWeather weatherWeather = new OpenWeatherWeather();
             weatherWeather.setId(id);
             weatherWeather.setMain(main);
@@ -60,7 +60,7 @@ public class JSONWeatherParser {
             String humidity = mainObject.getString("humidity");
             String tempMin = mainObject.getString("temp_min");
             String tempMax = mainObject.getString("temp_max");
-            //set data on openWeatherMain class
+            //set data on OpenWeatherMain class
             OpenWeatherMain weatherMain = new OpenWeatherMain();
             weatherMain.setTemp(temp);
             weatherMain.setPressure(pressure);
@@ -72,7 +72,7 @@ public class JSONWeatherParser {
             //read clouds JsonObject from OpenWeather Api json
             JSONObject cloudsObject = jsonObject.getJSONObject("clouds");
             String all = cloudsObject.getString("all");
-            //set data on openWeatherClouds class
+            //set data on OpenWeatherClouds class
             OpenWeatherClouds weatherClouds = new OpenWeatherClouds();
             weatherClouds.setAll(all);
 
@@ -83,7 +83,7 @@ public class JSONWeatherParser {
             String country = sysObject.getString("country");
             String sunrise = sysObject.getString("sunrise");
             String sunset = sysObject.getString("sunset");
-            //set data on openWeatherSys class
+            //set data on OpenWeatherSys class
             OpenWeatherSys weatherSys = new OpenWeatherSys();
             weatherSys.setType(type);
             weatherSys.setId(sysId);
@@ -98,8 +98,7 @@ public class JSONWeatherParser {
             String timezone = jsonObject.getString("timezone");
             String name = jsonObject.getString("name");
             String cod = jsonObject.getString("cod");
-
-            //set data on openWeatherSimple class
+            //set data on OpenWeatherSimple class
             OpenWeatherSimpleData weatherSimple = new OpenWeatherSimpleData();
             weatherSimple.setBase(base);
             weatherSimple.setDt(dt);
@@ -121,9 +120,6 @@ public class JSONWeatherParser {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return null;
     }
-
-
 }
